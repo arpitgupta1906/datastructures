@@ -83,7 +83,7 @@ void Stack::display(){
     if(top<0){
        cout<<"Stack is Empty"<<endl; 
     }
-    for(int i=0;i<=top;i++){
+    for(int i=top;i>=0;i--){
         cout<<a[i]<<" ";
     }
     cout<<endl;
