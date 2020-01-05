@@ -10,7 +10,7 @@ struct node{
 
 class binarytree{
     private:
-        
+
         void destroy_tree(node *leaf);
         void insert(int key,node *leaf);
         node *search(int key,node *leaf);
@@ -28,7 +28,7 @@ class binarytree{
         void postorderTransversal(node *leaf);
         void inorderTransversal(node *leaf);
         void preorderTransversal(node *leaf);
-        
+
 };
 
 binarytree::binarytree(){
@@ -48,9 +48,9 @@ int binarytree::maxDepth(node *leaf){
         {
             return (rd+1);
         }
-        
+
     }
-    
+
 }
 
 int binarytree::maxDepth(){
@@ -63,14 +63,14 @@ node *binarytree::search(int key,node *leaf){
             return leaf;
         else if(key<=(leaf->data))
             return search(key,leaf->left);
-        else 
+        else
             return search(key,leaf->right);
     }
     else
     {
         return NULL;
     }
-    
+
 }
 
 void binarytree::postorderTransversal(node *leaf){
@@ -120,15 +120,15 @@ node *binarytree::deletenode(node *leaf,int key){
             node *temp=leaf->left;
             free(leaf);
             return temp;
-            
+
         }
         node *temp=minvaluenode(leaf->right);
         leaf->data=temp->data;
-        leaf->right=deletenode(leaf->right,key);
-        
+        leaf->right=deletenode(leaf->right,temp->data);
+
     }
     return leaf;
-    
+
 }
 
 void binarytree::deletenode(int key){
@@ -210,7 +210,7 @@ int main(){
 
     bt.postorderTransversal(bt.root);
     cout<<"\nmax depth is"<<bt.maxDepth();
-    
+
     bt.~binarytree();
     return 0;
 }

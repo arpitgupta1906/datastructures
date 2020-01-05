@@ -76,7 +76,7 @@ Node* insert(Node* node,int key){
       int balance=getBalance(node);
 
       //left left case
-      if(balance>1 && node->left->key)
+      if(balance>1 && key<node->left->key)
       return rightRotate(node);
 
       //right right case
@@ -96,6 +96,77 @@ Node* insert(Node* node,int key){
       }
 
       return node;
+}
+
+Node* minValueNode(Node* root){
+  Node* temp=root;
+  while(temp->left!=NULL){
+    temp=temp->left;
+  }
+  return temp;
+}
+
+Node* deletenode(Node* root,int key){
+  if(root==NULL)
+    return NULL;
+  else if(key<root->key)
+    root->left=deletenode(root->left,key);
+  else if(key>root->key)
+      root->right=deletenode(root->right,key);
+
+  else{
+    if((root->left==NULL) || root->right==NULL){
+      Node* temp=root->left?root->left:root->right;
+
+      if(temp==NULL){
+        temp=root;
+        root=NULL;
+
+      }
+      else{
+        *root=*temp;
+      }
+      free(temp);
+    }
+    else{
+      Node* temp=minValueNode(root->right);
+
+      root->key=temp->key;
+      root->right=deletenode(root->right,temp->key);
+
+    }
+    if(root==NULL)
+    return root;
+
+    root->height=1+ max(height(root->left),height(root->right));
+
+    int balance=getBalance(root);
+
+
+    // Left Left Case
+    if (balance > 1 && getBalance(root->left) >= 0)
+        return rightRotate(root);
+
+    // Left Right Case
+    if (balance > 1 && getBalance(root->left) < 0)
+    {
+        root->left = leftRotation(root->left);
+        return rightRotate(root);
+    }
+
+    // Right Right Case
+    if (balance < -1 && getBalance(root->right) <= 0)
+        return leftRotation(root);
+
+    // Right Left Case
+    if (balance < -1 && getBalance(root->right) > 0)
+    {
+        root->right = rightRotate(root->right);
+        return leftRotation(root);
+    }
+
+    return root;
+  }
 }
 
 void preOrder(Node* root){
