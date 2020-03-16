@@ -22,7 +22,7 @@ class MinHeap{
         }
 
         int extractMin();
-
+        void makeheap();
         void decreaseKey(int i,int new_val);
 
         int getMin(){
@@ -69,6 +69,12 @@ int MinHeap::extractMin(){
     MinHeapify(0);
 
     return root;
+}
+
+void MinHeap::makeheap(){
+    for(int i=heap_size/2-1;i>=0;i--){
+        MinHeapify(i);
+    }
 }
 
 void MinHeap::insertKey(int k){
