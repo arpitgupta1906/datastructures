@@ -34,7 +34,7 @@ void kmpmatching(string txt,string pat){
             j++,i++;
         }
         if(j==pat.size()){
-            cout<<"Pattern found at"<<i-j;
+            cout<<"Pattern found at"<<i-j<<"\n";
             j=lps[j-1];
         }
         else if(i<txt.size() and pat[j]!=txt[i]){
