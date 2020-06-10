@@ -47,7 +47,7 @@ void update(int tree[],int lazy[],int startrange,int endrange,int delta
         int mid=(low+high)/2;
         update(tree,lazy,startrange,endrange,delta,low,mid,2*pos);
         updata(tree,lazy,startrange,endrange,delta,mid+1,high,2*pos+1);
-        tree[pos]+=min(tree[2*pos+1],tree[2*pos]);
+        tree[pos]=min(tree[2*pos+1],tree[2*pos]);
 
     }
 
