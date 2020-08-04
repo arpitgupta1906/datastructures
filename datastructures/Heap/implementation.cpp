@@ -50,7 +50,7 @@ void MinHeap::MinHeapify(int i){
         smallest=r;
 
     if(smallest!=i){
-        swap(harr[0],harr[smallest]);
+        swap(harr[i],harr[smallest]);
         MinHeapify(smallest);
     }
 }
