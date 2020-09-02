@@ -106,9 +106,9 @@ node reverse(node head){
     }
     else{
         node temp=reverse(head->next);
-        head->next->next=head;
+        temp->next=head;
         head->next=NULL;
-        return temp;
+        return head;
         
     }
 }
